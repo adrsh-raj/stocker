@@ -1,7 +1,7 @@
 
 USAGE
 
-A brief description of what this project does and who it's for
+This script can be use to get future cash flow values based on current growth of company
 
 
 ## Run Locally
