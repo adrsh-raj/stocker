@@ -28,7 +28,4 @@ Run the script
 ```bash
 python finance.py
 ```
-Or
-```
-./script.sh
-```
+
