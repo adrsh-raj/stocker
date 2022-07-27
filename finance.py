@@ -20,22 +20,24 @@ column = column[0]
 def FvCalculator():
     global list_append
     global sixth_term
-    sixth_term = 0
-    list_append = []
-    for i in range(1,int(future_year_entry.get())+1):
-        amount = float(amount_future.get())
-        oppertunity_cost = float(opration_future.get())
-        oppertunity_cost = oppertunity_cost/100
-        formula = amount*((1+ oppertunity_cost)**i)
-        list_append.append(formula)
-        
-        # ----------------
+    try:                                                  #change
+        sixth_term = 0
+        list_append = []
+        for i in range(1,int(future_year_entry.get())+1):
+            amount = float(amount_future.get())
+            oppertunity_cost = float(opration_future.get())
+            oppertunity_cost = oppertunity_cost/100
+            formula = amount*((1+ oppertunity_cost)**i)
+            list_append.append(formula)
+            
+            # ----------------
 
-    # print(list_append)
-    sixth_term = list_append[len(list_append)-1] * 1.1
-    print(Fore.CYAN+str(sixth_term))
-    print(Fore.GREEN + "Copy and paste in FC2 amount value")
-
+        # print(list_append)
+        sixth_term = list_append[len(list_append)-1] * 1.1
+        print(Fore.CYAN+str("{:.2f}".format(sixth_term)))   #change
+        print(Fore.GREEN + "Copy and paste in FC2 amount value")
+    except:
+        print(Fore.RED+ "Only numerical value is accepted! with all filled input ");
 
 def FvCalculator_b():
     global list_append_b
@@ -53,7 +55,7 @@ def FvCalculator_b():
     # print(list_append_b)
 
 
-    print(f'{Fore.CYAN} List of future value is {list_append+list_append_b}')
+    print(f'{Fore.CYAN} List of future value is {list_append+list_append_b} ')
     print(Fore.CYAN + "-"*column + "\n")
 
 
@@ -76,7 +78,7 @@ def Nv():
         pvvaluelist = list(d.values())
         sumofvalues = sum(pvvaluelist)
     except:
-        print("Couldn't get sufficient value")
+        print(Fore.RED + "Couldn't get sufficient value")
 
       
 
@@ -115,6 +117,20 @@ def fairValue():
     possibleValuemin = FairValue*(1-0.1)
     possibleValuemax = FairValue*(1+0.1)
     messagebox.showinfo(title="Possible valuation", message=f"Fair Value is between {possibleValuemin} and {possibleValuemax}")
+
+
+
+
+def reset_button():
+    amount_future.delete(0,END)
+    opration_future.delete(0,END)
+    future_year_entry.delete(0,END)
+    future_year_entry_b.delete(0,END)
+    amount_future_b.delete(0,END)
+    opration_future_b.delete(0,END)
+    net_cash.delete(0,END)
+    shares.delete(0,END)
+
 
 
 developer_label = Label(root, text='by source(github = adrsh-raj)',bg='#F3E8AD', fg='red', font=("Courier", 8))
@@ -217,16 +233,6 @@ exit_Button = Button(root, text="Exit", bg='#F3E8AD', command=exit_btn, width=30
 exit_Button.place(rely=0.9, relx=0.55)
 
 
-
-def reset_button():
-    amount_future.delete(0,END)
-    opration_future.delete(0,END)
-    future_year_entry.delete(0,END)
-    future_year_entry_b.delete(0,END)
-    amount_future_b.delete(0,END)
-    opration_future_b.delete(0,END)
-    net_cash.delete(0,END)
-    shares.delete(0,END)
 
 reset_Button = Button(root, text="Reset", bg='#F3E8AD', command=reset_button, width=30, font=('Bold '), fg='#000000')
 reset_Button.place(rely=0.9, relx=0.1)
